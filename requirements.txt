@@ -1,9 +1,3 @@
-fastapi
-uvicorn
-pandas
-numpy
-tensorflow-cpu
-scikit-learn
-python-dotenv
 streamlit
 requests
+pandas
