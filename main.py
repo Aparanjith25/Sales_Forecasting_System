@@ -53,13 +53,9 @@ model = load_model('sales_lstm_model.h5')
 scaler = pickle.load(open('sales_scaler.pkl', 'rb'))
 
 # rebuild the same store 1 sales series used in training
-df = pd.read_csv('train.csv', low_memory=False, usecols=['Store', 'Date', 'Sales', 'Open'])
-store1 = df[df['Store'] == 1].copy()
-store1['Date'] = pd.to_datetime(store1['Date'])
-store1 = store1.sort_values('Date')
-store1 = store1[store1['Open'] == 1]
-store1 = store1.set_index('Date')
-sales = store1['Sales']
+sales_df = pd.read_csv('store1_sales.csv', parse_dates=['Date'])
+sales_df = sales_df.set_index('Date')
+sales = sales_df['Sales']
 
 time_step = 30
 
