@@ -57,7 +57,7 @@ setuptools==84.0.0
 six==1.17.0
 starlette==1.6.0
 streamlit==1.62.0
-tensorflow==2.21.0
+tensorflow
 termcolor==3.3.0
 threadpoolctl==3.6.0
 toml==0.10.2
