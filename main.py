@@ -5,6 +5,9 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
 
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 app = FastAPI(title="Sales Forecast API")
 
 app.add_middleware(
@@ -50,7 +53,7 @@ model = load_model('sales_lstm_model.h5')
 scaler = pickle.load(open('sales_scaler.pkl', 'rb'))
 
 # rebuild the same store 1 sales series used in training
-df = pd.read_csv('train.csv', low_memory=False)
+df = pd.read_csv('train.csv', low_memory=False, usecols=['Store', 'Date', 'Sales', 'Open'])
 store1 = df[df['Store'] == 1].copy()
 store1['Date'] = pd.to_datetime(store1['Date'])
 store1 = store1.sort_values('Date')
